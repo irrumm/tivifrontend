@@ -1,5 +1,10 @@
 # tivi-front
 
+## API Address configuration
+```
+configuration.ts
+```
+
 ## Project setup
 ```
 npm install
