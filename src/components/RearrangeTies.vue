@@ -70,7 +70,7 @@ export default class ViewCandidates extends Vue {
     }
 
     canbeMovedDown(index: number): boolean {
-        if (index !== 0) {
+        if (index !== this.department!.qualifiedCandidates.length - 1) {
             if (this.department!.qualifiedCandidates[index + 1].voteCount === this.department!.qualifiedCandidates[index].voteCount) {
                 return true;
             }
