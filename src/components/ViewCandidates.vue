@@ -14,9 +14,16 @@
 
             <tbody>
                 <tr v-for="candidate in this.department.qualifiedCandidates" :key="candidate.name">
+                    <template v-if="candidate.tied === true">
+                    <td><strong>{{ candidate.name }}</strong></td>
+                    <td><strong>{{ candidate.team }}</strong></td>
+                    <td><strong>{{ candidate.voteCount }}</strong></td>
+                    </template>
+                    <template v-else>
                     <td>{{ candidate.name }}</td>
                     <td>{{ candidate.team }}</td>
                     <td>{{ candidate.voteCount }}</td>
+                    </template>
                 </tr>
             </tbody>
             <tbody>

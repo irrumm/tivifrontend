@@ -15,10 +15,16 @@
 
             <tbody>
                 <tr v-for="(candidate, index) in this.department.qualifiedCandidates" :key="index">
-                    <td v-if="candidate.tied"><strong>{{ candidate.name }}</strong></td>
-                    <td v-else>{{ candidate.name }}</td>
+                    <template v-if="candidate.tied === true">
+                    <td><strong>{{ candidate.name }}</strong></td>
+                    <td><strong>{{ candidate.team }}</strong></td>
+                    <td><strong>{{ candidate.voteCount }}</strong></td>
+                    </template>
+                    <template v-else>
+                    <td>{{ candidate.name }}</td>
                     <td>{{ candidate.team }}</td>
                     <td>{{ candidate.voteCount }}</td>
+                    </template>
                     <td>
                         <button v-if="candidate.tied" class="btn btn-secondary" style="margin-right:10px" :disabled="!canbeMovedUp(index)" @click="moveCandidate(index, index - 1)">Move up</button>
                         <button v-if="candidate.tied" class="btn btn-secondary" :disabled="!canbeMovedDown(index)" @click="moveCandidate(index, index + 1)">Move down</button>
