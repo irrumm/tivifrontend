@@ -2,9 +2,10 @@
   <div id="app">
     <div
       class="container"
-      style="background-color: white; padding: 10px; border-radius: 25px"
+      style="background-color: white; padding: 1px; padding-bottom: 20px; border-radius: 25px"
     >
       <div id="view">
+        <Step :currentComponent="this.currentComponent"></Step>
         <component :is="this.componentsArray[this.currentComponent]" @nextComponent=nextComponent() @skipComponent=skipComponent() @home=firstComponent()></component>
       </div>
     </div>
@@ -12,12 +13,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import UploadCandidates from "./components/UploadCandidates.vue";
-import ViewCandidates from "./components/ViewCandidates.vue";
+import { Component, Prop, Vue } from "vue-property-decorator"
+import UploadCandidates from "./components/UploadCandidates.vue"
+import ViewCandidates from "./components/ViewCandidates.vue"
 import RearrangeTies from "./components/RearrangeTies.vue"
 import ChooseCouncil from "./components/ChooseCouncil.vue"
 import ViewFinal from "./components/ViewFinal.vue"
+import Step from "./components/Step.vue"
 
 @Component({
   components: {
@@ -25,7 +27,8 @@ import ViewFinal from "./components/ViewFinal.vue"
     ViewCandidates,
     RearrangeTies,
     ChooseCouncil,
-    ViewFinal
+    ViewFinal,
+    Step
   }
 })
 export default class App extends Vue {
