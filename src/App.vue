@@ -1,25 +1,27 @@
 <template>
   <div id="app">
-    <div
-      class="container"
-      style="background-color: white; padding: 1px; padding-bottom: 20px; border-radius: 25px"
-    >
+    <div class="container">
       <div id="view">
         <Step :currentComponent="this.currentComponent"></Step>
-        <component :is="this.componentsArray[this.currentComponent]" @nextComponent=nextComponent() @skipComponent=skipComponent() @home=firstComponent()></component>
+        <component
+          :is="this.componentsArray[this.currentComponent]"
+          @nextComponent="nextComponent()"
+          @skipComponent="skipComponent()"
+          @home="firstComponent()"
+        ></component>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator"
-import UploadCandidates from "./components/UploadCandidates.vue"
-import ViewCandidates from "./components/ViewCandidates.vue"
-import RearrangeTies from "./components/RearrangeTies.vue"
-import ChooseCouncil from "./components/ChooseCouncil.vue"
-import ViewFinal from "./components/ViewFinal.vue"
-import Step from "./components/Step.vue"
+import { Component, Vue } from "vue-property-decorator";
+import UploadCandidates from "./components/UploadCandidates.vue";
+import ViewCandidates from "./components/ViewCandidates.vue";
+import RearrangeTies from "./components/RearrangeTies.vue";
+import ChooseCouncil from "./components/ChooseCouncil.vue";
+import ViewFinal from "./components/ViewFinal.vue";
+import Step from "./components/Step.vue";
 
 @Component({
   components: {
@@ -28,14 +30,21 @@ import Step from "./components/Step.vue"
     RearrangeTies,
     ChooseCouncil,
     ViewFinal,
-    Step
-  }
+    Step,
+  },
 })
 export default class App extends Vue {
-  @Prop() private currentComponent = 0;
-  @Prop() private componentsArray = [UploadCandidates, ViewCandidates, RearrangeTies, ChooseCouncil, ViewFinal];
+  private currentComponent = 0;
 
-  nextComponent(): void  {
+  private componentsArray = [
+    UploadCandidates,
+    ViewCandidates,
+    RearrangeTies,
+    ChooseCouncil,
+    ViewFinal,
+  ];
+
+  nextComponent(): void {
     this.currentComponent = this.currentComponent + 1;
   }
   skipComponent(): void {
@@ -47,6 +56,15 @@ export default class App extends Vue {
 }
 </script>
 
+<style scoped>
+.container {
+  background-color: white;
+  padding: 1px;
+  padding-bottom: 20px;
+  border-radius: 25px;
+}
+</style>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -55,5 +73,16 @@ export default class App extends Vue {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.btn-secondary {
+  margin-right:10px
+}
+
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  margin-bottom: 15px;
 }
 </style>
