@@ -58,8 +58,6 @@ export default class UploadCandidates extends Vue {
       Accept: "*/*",
     };
 
-    console.log(axios.defaults.baseURL)
-
     try {
       const response = await axios.post(ApiBaseUrl, this.text, {
         headers: authHeaders,
